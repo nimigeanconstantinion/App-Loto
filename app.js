@@ -1,15 +1,22 @@
 let ghiceste = '';
-let btp = document.querySelector(".buto");
-let bttn = document.querySelector(".buton");
+//let btp = document.querySelector(".buto");
+let buton = document.querySelector(".buton");
 let bdy=document.querySelector("body");
 let textC = ``;
 let textG = ``;
+let textAll = ``;
 let sanse = 7;
 let fingame = false;
+
+let joc = 0;
 sanse = +7;
-btp.addEventListener("click", () => {
-    play();
-})
+
+
+
+buton.innerHTML = "Play";
+
+
+
 
 
 function play() {
@@ -17,14 +24,12 @@ function play() {
     textG = "";
 
     textC = ghiceste;
-    btp.style.display="none";
+
 
     let x = document.querySelector(".gasite");
     x.innerHTML = filtrare(ghiceste, "");
-    bttn.style.display = "flex";
-    bttn.style.justifycontent = "center";
-    bttn.style.alignitems="center";
-    bttn.innerHTML = 'Alege o litera';
+    buton.innerHTML = `Alege o litera`;
+
     ;
 
     
@@ -52,11 +57,10 @@ function filtrare(textCautat, textGasit) {
 
 function checkFin() {
     let chks = textC;
-    chks = chks.replace(" ", "");
+    chks = chks.replaceAll(" ", "");
     
     for (let i = 0; i < textG.length; i++){
         chks=chks.replaceAll(textG[i], "");
-        
     }
     if (chks.length == 0) {
         return true;
@@ -71,39 +75,85 @@ function checkFin() {
 // let textC = "Ana are mere";
 
  let x = document.querySelector(".gasite");
+ let introd = document.querySelector(".introduse");
 
 
 
 // x.innerHTML=filtrare( textG,textC);
 
-bttn.addEventListener("click", () => {
-    let litera = prompt("Introduceti inca o litera: ");
+let putCh = () => {
+    let toShow =``;
+    for (let i = 0; i < textAll.length; i++){
+        toShow += ` ${textAll[i]},`;
+    }
+    return toShow.substring(0,toShow.length-1);
+}
 
-    if (textC.includes(litera) && textG.includes(litera) == false) {
+buton.addEventListener("click", () => {
+
+    if (joc == 0) {
         
-        textG += litera;
 
-        x.innerHTML = filtrare(textC, textG);
-        if (checkFin()) {
-            fingame = true;
-            bdy.innerHTML = `
-            <h1>Hangman Game</h1>
-            <img src="https://media.giphy.com/media/2gtoSIzdrSMFO/giphy.gif">
-            `;        
-        }
-    }else{
+        play();
+        joc = 1;
+    } else {
 
-        alert("Ghinionnnnnn!!!!");
-        sanse--;
-        alert("Mai aveti "+sanse+" vieti");
-        if (sanse == 0) {
-            bdy.innerHTML = `
-            <h1>Hangman Game</h1>
-            <h1>YOU LOOSE!!!</h1>
-            <img id="loose" src="https://media.giphy.com/media/ybQIv0CsYm1XY9A8Dm/giphy.gif">
-            <p>Asta trebuia sa ghicesti:</p>
-            <p>${textC}</p>
+        let litera = prompt("Introduceti inca o litera: ");
+        
+        if (textC.includes(litera) && textG.includes(litera) == false) {
+        
+            textG += litera;
+            textAll += litera;
+            x.innerHTML = filtrare(textC, textG);
+            introd.innerHTML =`Ati ales pana acum: `+ putCh();
+
+            if (checkFin()) {
+                fingame = true;
+                bdy.innerHTML = `
+                <header>
+                <h1>Hangman Game</h1>
+                <section class="sanse">
+                    <a href="/index.html">Back</a>
+                </section>                    
+
+                </header>
+                <img class="win" src="https://media.giphy.com/media/l0HlSDiA6WUytl9oA/giphy.gif">
+                <footer>
+                <p>Hangman Game &copy; MininalistCode Inc. 2021</p>
+                </footer>
             `;
+            
+            }
+        } else {
+            textAll += litera;
+            alert("Ghinionnnnnn!!!!");
+            sanse--;
+            introd.innerHTML = `Ati ales pana acum: `+putCh();
+
+            let sns = document.querySelector(".sanse");
+            sns.innerHTML = `
+                 Mai aveti ${sanse} vieti din 7
+            `;
+            //alert("Mai aveti " + sanse + " vieti");
+            if (sanse == 0) {
+                bdy.innerHTML = `
+                <header>
+                    <h1>Hangman Game</h1>
+                    <section class="sanse">
+                    <a href="/index.html">Back</a>
+                    </section>                    
+                </header>
+                
+            <img id="loose" src="https://media.giphy.com/media/3o7TKr3nzbh5WgCFxe/giphy.gif">
+            <p id="guess">Asta trebuia sa ghicesti: ${textC}</p>
+            <footer>
+            <p>Hangman Game &copy; MininalistCode Inc. 2021</p>
+            </footer>
+
+            `;
+            }
         }
+
+        buton.innerHTML = "Alege Litera";
     }
 });

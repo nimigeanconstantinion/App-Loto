@@ -2,12 +2,54 @@ body{
     height: 100%;
     width: 100%;
     display: block;
+    position: relative;
+    color: #0E0403;
+    background: #FAEBEA;
+    position: relative;
 }
+header{
+    background: #300D0B;
+    height: 200px;
+    display: grid;
+    grid-template-columns: minmax(100px,auto) minmax(200px,auto);
+
+}   
+header h1{
+    font-size: 2.2em;
+    color: #FAEBEA;
+    margin-top: 20px;
+}
+
+.loose{
+    color:black
+}
+.sanse{
+    position: absolute;
+    top:10px;
+    font-size: 2em;
+    background: #DA6761;
+    color: #FAEBEA;
+    right: 10px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+   }
+ .sanse a{
+     text-decoration: none;
+     color:#FAEBEA ;
+     text-align: center;
+     align-self: center;
+     margin:auto;
+ }  
+   
 
 .gasite{
     width: 100%;
-    height: 20%;
-    background: gray;
+    height:fit-content;
+    background:#DA6761;
     padding: 2px;
     display: flex;
     flex-direction: row;
@@ -33,48 +75,69 @@ body{
     border: none !important ;
 }
 
-.buton,.buto{
-    background: gray;
-    width: 200px;
-    height: 80px;
-    color: blue;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    margin-top: 30px;
-    text-align: center;
-    font-size: 2em;
-    display: block;
-}
+
 .buton{
-    display: none;
-}
-
-.buto{
-    background: gray;
+    background: #300D0B;
     width: 200px;
     height: 80px;
-    color: blue;
+    color: #FAEBEA;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     text-align: center;
     font-size: 2em;
-
+    margin-top: 90px;    
 }
 
 img{
     display: block;
-    margin: auto;
-    width: 70%;
-    height: 60%;
+    margin: 50px auto;
+    min-width: 310px;
+    max-width: 40%;
+    height: 50vh;
+    
 }
+
 #loose{
     display: block;
+    margin: 10px auto;
+    width: 60%;
+    height: 50vh;
+}
+p{
+    font-size: 2em;
+}
+
+
+.introduse{
+    background: #300D0B;
+    color: #FAEBEA;
+    font-size: 1.5em;
+    margin-top: 100px;
+    line-height: 3em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+footer{
+    position: absolute;
+    top: 85vh;
+    width: 100%;
+    height: 10vh;
+    background:#300D0B;
+    color:#FAEBEA;
+    font-size: .7em;
+}
+footer p{
+    margin-top:4vh;
+}
+#guess{
+    text-align: center;
+    background: #DA6761;
+    color: #F9EBEA;
+    width: fit-content;
     margin: auto;
-    width: 50%;
-    height: 40%;
 }
